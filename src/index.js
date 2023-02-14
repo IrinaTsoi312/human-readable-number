@@ -19,5 +19,19 @@ function toReadable (number) {
     return `${getThousand()} ${getHundreds()} ${getTens()}`;
   }
   else if(number > 999999 && number < 999999999) {}
+  function getTens() {
+    if(stringNumber[stringNumber.length-1] === "0") {
+      const digit = stringNumber[strLength-2] + "0";
+      return digits[digit];
+    } 
+    else if(uniqueDigitsKeys.includes(stringNumber.slice(-2))) {
+      return uniqueDigits[stringNumber.slice(-2)];
+    }
+    else if(stringNumber[strLength-1] !== "0") {
+      const digit = stringNumber[strLength-2] + "0";
+      return digits[digit] + " " + digits[stringNumber[strLength-1]];
+    }
+  }
+  
 }
 console.log(toReadable(1234));
