@@ -32,6 +32,17 @@ function toReadable (number) {
       return digits[digit] + " " + digits[stringNumber[strLength-1]];
     }
   }
-  
+  function getHundreds() {
+    return `${digits[stringNumber[strLength-3]]} ${counts[0]}`;
+  }
+  function getThousand() {
+    if(strLength === 4) {
+      return `${digits[stringNumber[0]]} ${counts[1]}`;
+    } else if(strLength === 5) {
+      return `${digits[stringNumber.slice(0, 2)]} ${counts[1]}`;
+    } else if(strLength === 6) {
+      return `${digits[stringNumber[0]]} ${counts[0]} ${counts[1]}`;
+    }
+  }
 }
 console.log(toReadable(1234));
