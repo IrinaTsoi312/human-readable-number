@@ -10,7 +10,7 @@ function toReadable (number) {
     return digits[stringNumber];
   } 
   else if(number > 9 && number < 100) {
-    return `${getTens()}`;
+    return `${getTens(stringNumber)}`;
   } 
   else if(number > 99 && number < 1000) {
     return `${getHundreds()} ${getTens()}`;
@@ -19,17 +19,17 @@ function toReadable (number) {
     return `${getThousand()} ${getHundreds()} ${getTens()}`;
   }
   else if(number > 999999 && number < 999999999) {}
-  function getTens() {
-    if(stringNumber[stringNumber.length-1] === "0") {
-      const digit = stringNumber[strLength-2] + "0";
+  function getTens(str) {
+    if(str[1] === "0") {
+      const digit = str[0] + "0";
       return digits[digit];
     } 
-    else if(uniqueDigitsKeys.includes(stringNumber.slice(-2))) {
-      return uniqueDigits[stringNumber.slice(-2)];
+    else if(uniqueDigitsKeys.includes(str)) {
+      return uniqueDigits[str];
     }
-    else if(stringNumber[strLength-1] !== "0") {
-      const digit = stringNumber[strLength-2] + "0";
-      return digits[digit] + " " + digits[stringNumber[strLength-1]];
+    else if(str[1] !== "0") {
+      const digit = str[0] + "0";
+      return digits[digit] + " " + digits[str[1]];
     }
   }
   function getHundreds() {
@@ -44,5 +44,13 @@ function toReadable (number) {
       return `${digits[stringNumber[0]]} ${counts[0]} ${counts[1]}`;
     }
   }
+  function getMillions() {
+    if(strLength === 7) {
+      return `${stringNumber[0]} ${counts[2]}`;
+    }
+    else if(strLength === 8) {
+      return `${getTens}`
+    }
+  }
 }
-console.log(toReadable(1234));
+console.log(toReadable(23));
